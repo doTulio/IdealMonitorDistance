@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>Qual é a distância ideal da tela?</title>
+		<meta charset="utf-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="https://rawgithub.com/digitalBush/jquery.maskedinput/master/src/jquery.maskedinput.js"></script>
+		<script src="calculoPosicao.js"></script>
+	</head>
+	<body style="background-color: #555555">
+		<div id="elemDivSvg">
+			<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="800" id="elemSvg">
+				<!-- tela -->
+				<g transform="translate(0,0)">
+					<!-- parte cinza, é a borda do monitor -->
+			    	<rect x="0" y="0" width="175" height="137" fill="rgb(192,192,192)" stroke-width="1" stroke="rgb(0,0,0)" />
+			    	<!-- parte azul, é a tela azul do monitor -->
+			    	<rect x="10" y="11" width="154" height="114" fill="rgb(58,110,165)" stroke-width="1" stroke="rgb(128,128,128)" />
+			    	<!-- linha preta que contorna a tela azul -->
+			    	<path d="M 11,124 L 11,12 L 163,12" stroke-width="1" fill="none" stroke="rgb(0,0,0)" />
+		    	</g>
+		    	<!-- fim tela -->
+		    	<!-- base -->
+		    	<g transform="translate(0,138)" width="113" height="24">
+		    		<!-- parte do meio -->
+		    		<rect x="20" y="8" width="72" height="8" fill="rgb(192,192,192)" stroke-width="1" stroke="rgb(128,128,128)" />
+		    		<path d="M 21,11 L 21,15 L 22,15 L 22,11" fill="none" stroke-width="1" stroke="rgb(255,255,255)" />
+		    		<path d="M 21,11 L 21,15 L 22,15 L 22,11" fill="none" stroke-width="1" stroke="rgb(255,255,255)" />
+		    		<path d="M 23,9 L 90,9 L 90,15 L 89,15 L 89,10 L 23,10" stroke-width="1" fill="none" stroke="rgb(128,128,128)" />
+		    		<!-- parte superior -->
+					<path d="M 13,0 L 13,3 L 18,8 L 94,8 L 99,3 L 99,0 z" fill="rgb(192,192,192)" stroke-width="1" stroke="rgb(0,0,0)" />
+					<path d="M 98,0 L 13,0 L 13,1 L 98,1 L 98,3 L 94,7 L 17,7 L 17,6 L 94,6 L 98,2" fill="none" stroke-width="1" stroke="rgb(128,128,128)" />
+					<path d="M 13,0 L 13,3 L 17,7" fill="none" stroke-width="1" stroke="rgb(255,255,255)" />
+					<path d="M 71,1 L 68,1 L 68,4" fill="none" stroke-width="1" stroke="rgb(0,0,0)" />
+					<path d="M 71,2 L 71,4 L 69,4" fill="none" stroke-width="1" stroke="rgb(255,255,255)" />
+					<path d="M 69,2 L 70,2 L 70,3 L 69,3" fill="none" stroke-width="1" stroke="rgb(0,255,0)" />
+					<rect x="75" y="1" width="11" height="4" fill="rgb(192,192,192)" stroke-width="1" stroke="rgb(128,128,128)" />
+					<path d="M 75,1 L 85,1" fill="none" stroke-width="1" stroke="rgb(192,192,192)" />
+					<path d="M 75,2 L 75,4" fill="none" stroke-width="1" stroke="rgb(255,255,255)" />
+		    		<!-- parte inferior -->
+		    		<rect x="0" y="16" width="111" height="6" fill="rgb(192,192,192)" stroke-width="1" stroke="rgb(128,128,128)" />
+		    		<path d="M 1,20 L 1,17 L 109,17" fill="none" stroke-width="1" stroke="rgb(255,255,255)" />
+		    	</g>
+		    	<!-- fim base -->
+ 			</svg>
+ 			<div>
+ 				<div style="padding: 5px 5px 5px 5px; border-color: rgb(192,192,192); border-style: solid; border-width: 1px; width: 200px; margin: auto; text-align: center; background-color: rgb(212,208,200);color: rgb(0,0,0)">
+ 					<div style="background-color: rgb(0,0,0); color: rgb(255,255,255)">Resolução</div>
+	 				<input type="search" placeholder="Vertical" id="monitor_x" value="1920" style="width: 82px;text-align: right">
+	 				<span>x</span>
+	 				<input type="search" placeholder="Horizontal" id="monitor_y" value="1080" style="width: 82px">
+	 				<div style="background-color: rgb(0,0,0); color: rgb(255,255,255)">Tamanho Diagonal</div>
+	 				<input type="search" placeholder="Pol" id="monitor_pol" value="42" style="width: 50px;text-align: center">
+	 			</div>
+	 			<br>
+	 			<div style="padding: 5px 5px 5px 5px; border-color: rgb(192,192,192); border-style: solid; border-width: 1px; width: 200px; margin: auto; background-color: rgb(212,208,200);color: rgb(0,0,0)">
+ 					<div style="background-color: rgb(0,0,0); color: rgb(255,255,255);text-align: center">Resultados</div>
+ 					<div style="padding-left: 5px; background-color: rgb(255,255,255)">
+		 				<b>Resolução: </b><span id="resultado_resolucao"></span>
+		 				<br>
+		 				<b>Diagonal (pol): </b><span id="resultado_diag_pol"></span>
+		 				<br>
+		 				<b>Tamanho (pol): </b><span id="resultado_tamanho_pol"></span>
+		 				<br>
+		 				<b>Diagonal (cm): </b><span id="resultado_diag_cm"></span>
+		 				<br>
+		 				<b>Tamanho (cm): </b><span id="resultado_tamanho_cm"></span>
+		 				<br>
+		 				<b>DPI: </b><span id="resultado_dpi"></span>
+		 				<br>
+		 				<b>Distância ideal (m):</b><span id="resultado_distancia"></span>
+	 				</div>
+	 			</div>
+ 			</div>
+		</div>
+	</body>
+</html>
